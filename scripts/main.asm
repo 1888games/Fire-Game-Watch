@@ -26,7 +26,6 @@ BASICStub(Entry,"Caveman")
   // 	   4032 :PET
 
 Entry:		
-	
 
 
 	jsr LIONEL.Initialise	
@@ -48,18 +47,12 @@ Entry:
 	SetVICRows(23)
 
 	jsr SetupScreenMemory
-
-	//jmp LoadGame
 	jmp TitleScreen
 
-	//jmp  LoadGame
-	
 
 
 .if(target == "VIC") {
-
-*= $2C00 "Main"
-
+	*= $2C00 "Main"
 }
 
 PerformFrameCodeFlag: 	.byte $00
@@ -454,6 +447,7 @@ NextLife:{
 	rts
 
 }
+
 NextLevel:{	
 
 	lda #ZERO
@@ -473,44 +467,6 @@ NextLevel:{
 	rts
 }
 
-GotoNextLevel: {
-
-	jsr Reset
-	jsr LEVELDATA.SetupNextLevel
-
-	
-
-
-	lda #ONE
-	sta GameIsActive
-
-		
-
-	rts
-
-
-}
-
-CheckNextLevel:{
-
-	lda LevelCompleteTimer
-	beq Finish
-
-	dec LevelCompleteTimer
-	bne Finish
-
-	jsr GotoNextLevel
-
-	Finish:
-		rts
-
-}
-
-Random:{
-
-
-	rts
-}
 
 
 Reset:{
@@ -519,8 +475,6 @@ Reset:{
 
 		jsr JUMPERS.Reset
 
-
-		
 		rts
 
 }
@@ -531,13 +485,10 @@ LoadGame: {
 	ClearScreen()
 	jsr SetupGameColours
 	jsr SetupCharMemory
-
-
 	
 	jsr MAPLOADER.DrawMap
 	
 	jsr NewGame
-
 
 	jmp Loop
 
@@ -545,27 +496,7 @@ LoadGame: {
 
 
 
-
-
-
-TempLoop: {
-
-	WaitForRasterLine(0, 0)
-
-	jsr SOUND.Update
-
-	jmp TempLoop
-}
-
-
-
-
-
 CheckWhetherToUpdateScore: {
-
-		//lda ZP_COUNTER
-		//and #1
-		//bne NoScoreAdd
 
 		jsr SCORE.CheckScoreToAdd
 
@@ -630,8 +561,6 @@ DrawBackground: {
 		WaitForRasterLine(187, 0)
 		SetBackgroundColour(7, 5)
 
-
-
 	}
 
 
@@ -640,31 +569,13 @@ DrawBackground: {
 
 		 WaitForRasterLine(10, 0)
 
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		
-		 SetBackgroundColour(3,5)
+		SetBackgroundColour(3,5)
 
 		jsr SOUND.Update
 
-		 WaitForRasterLine(88, 0)
-
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		// nop
-		
-		 SetBackgroundColour(5, 5)
+		WaitForRasterLine(88, 0)
+	
+		SetBackgroundColour(5, 5)
 		jsr FrameCode
 
 		WaitForRasterLine(138, 0)
@@ -685,8 +596,6 @@ Loop:
 
 	jsr DrawBackground
 
-
-
 	.if (target == "C64") {
 		WaitForRasterLine(190, 0)
 	}
@@ -696,13 +605,9 @@ Loop:
 	}
 
 
-	jsr JUMPERS.CheckDrawing
-
-	
+	jsr JUMPERS.CheckDrawing	
 	jsr MainIRQ
 	
-
-
 	jmp Loop
 	
 
@@ -741,8 +646,6 @@ FrameCode: {
 		
 		jsr FIRE.UpdateFire
 		
-		//jsr CAVEMAN.CheckKilledByDino
-
 		GamePaused:
 
 			jsr CheckWhetherToUpdateScore
@@ -775,7 +678,6 @@ FrameCode: {
 
 GameTick: {
 
-		//.break
 
 		lda GameIsActive
 		beq NotRunning
@@ -787,12 +689,9 @@ GameTick: {
 
 		NotRunning:
 
-			jsr CheckNextLevel
+	
 			jsr DeathUpdate
 			jmp GameOverUpdate
-
-
-	
 
 		Finish:
 		

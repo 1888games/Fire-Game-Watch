@@ -9,7 +9,6 @@
 	*=$3600"Code"
 }
 
-#import "lookups/labels.asm"
 #import "setup/macros.asm"
 #import "setup/maploader.asm"
 #import "setup/titleloader.asm"

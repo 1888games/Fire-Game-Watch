@@ -5,7 +5,6 @@
   }
   .label TypeColours=$1a31
 }
-.label JOY_DOWN=$2
 .label BaseScreenLocation=$ff14
 .label FIRE=$3a35 {
   .label SmokeObjectId=$1d
@@ -281,11 +280,9 @@
   }
   .label GameOverTimer=$86e
   .label InitialCooldown=$86d
-  .label GotoNextLevel=$9ef {
+  .label LoadGame=$9fd {
   }
-  .label LoadGame=$a18 {
-  }
-  .label SetGameOver=$a87 {
+  .label SetGameOver=$a48 {
   }
   .label TitleScreen=$87a {
   }
@@ -299,36 +296,31 @@
     .label NotDead=$9dc
     .label Finish=$9df
   }
-  .label GameOverUpdate=$b60 {
-    .label Continue=$b68
-    .label Waiting=$b72
-  }
-  .label Random=$a09 {
+  .label GameOverUpdate=$b21 {
+    .label Continue=$b29
+    .label Waiting=$b33
   }
   .label WaitingForFire=$873
   .label NextLevel=$9e0 {
   }
-  .label Reset=$a0a {
+  .label Reset=$9ef {
   }
   .label TitleLoop=$8b7 {
   }
-  .label Loop=$b36
+  .label Loop=$af7
   .label DeathUpdate=$904 {
     .label NextLife=$914
     .label Finish=$917
   }
   .label GameOver=$870
-  .label CheckWhetherToUpdateScore=$a83 {
-    .label NoScoreAdd=$a86
-  }
-  .label CheckNextLevel=$9fb {
-    .label Finish=$a08
+  .label CheckWhetherToUpdateScore=$a44 {
+    .label NoScoreAdd=$a47
   }
   .label SetupCharMemoryTitle=$974 {
   }
-  .label GameTick=$ba2 {
-    .label NotRunning=$bb0
-    .label Finish=$bb9
+  .label GameTick=$b63 {
+    .label NotRunning=$b71
+    .label Finish=$b77
   }
   .label GameIsActive=$86c
   .label GameTickFlag=$869
@@ -336,24 +328,21 @@
   }
   .label GameMode=$86a
   .label BackgroundColour=$86b
-  .label FrameCode=$b78 {
-    .label GamePaused=$b85
-    .label Finish=$ba1
+  .label FrameCode=$b39 {
+    .label GamePaused=$b46
+    .label Finish=$b62
   }
   .label SetupCharMemory=$964 {
   }
-  .label DrawBackground=$a98 {
+  .label DrawBackground=$a59 {
   }
   .label SetupGameColours=$919 {
   }
   .label NewGame=$9a5 {
   }
   .label DeathTimer=$875
-  .label TempLoop=$a5f {
-  }
   .label LevelCompleteTimer=$871
 }
-.label JOY_RIGHT=$8
 .label VECTOR2=$10
 .label ChannelsMSB=$16d6
 .label VECTOR1=$e
@@ -511,7 +500,6 @@
 .label Channel2_MSB=$ff10
 .label VECTOR6=$18
 .label VECTOR5=$16
-.label JOY_FIRE=$10
 .label SCORE=$37d0 {
   .label Add=$3831 {
     .label BetterOrEqualHigh=$3856
@@ -592,10 +580,8 @@
   .label TileScreenLocations=$18d2
   .label Rows=$18d9
 }
-.label JOY_UP=$1
 .label KeyPressed=$16dc
 .label PET_RIGHT_3=$1d
-.label JOY_LEFT=$4
 .label CHAR_DRAWING=$1dbf {
   .label BUFFER_ADDRESS=$14
   .label ClearAll=$1e24 {
