@@ -8,22 +8,10 @@
 
 MAIN: {
 
-
 #import "../Lionel/lionel.asm"
 #import "setup/loadModules.asm"
 
 BASICStub(Entry,"Caveman")
-
-//exomizer sfx sys -t 64 -x "inc $d020" -o yakf.exo yakf.prg
-  // 20: Commodore Vic20, unexpanded memory.
-  //        23: Commodore Vic20, 3kB memory expansion.
-  //        52: Commodore Vic20, 32kB memory expansion.
-  //        55: Commodore Vic20  32+3kB memory expansion.
-  //        16: Commodore c16
-  //         4: Commodore plus4.
-  //        64: Commodore c64. (The default target)
-  //       128: Commodore c128.
-  // 	   4032 :PET
 
 Entry:		
 
@@ -83,27 +71,15 @@ TitleScreen: {
 
 	SetBorderColour(0, 5)
 	SetBackgroundColour(0,5)
-	SetExtendedColour1(7 ,5)  //9
-	SetExtendedColour2(0,  5)  //13
+	SetExtendedColour1(7 ,5) 
+	SetExtendedColour2(0,  5)  
 
 	.if (target == "VIC") {
-			SetBorderColour(7, 0)
-	
+		SetBorderColour(7, 0)
 	}
 
-
-	jsr SetupCharMemoryTitle	
-
-	//ClearScreen()
-
-	//jmp PetLoop
-
+	jsr SetupCharMemoryTitle
 	jsr TITLE_LOADER.DrawMap
-
-	//ldy #0
-	//jsr SOUND.StartSong	
-	
-	
 	jmp TitleLoop
 
 }
@@ -113,18 +89,6 @@ TitleScreen: {
 
 
 TitleLoop: {
-
-.if (target == "VIC") {
-	//	WaitForRasterLine(40)
-	}
-	.if(target == "C64") {
-		//WaitForRasterLine(30,0)
-	}
-
-	.if(target == "264" || target == "PET") {
-		//WaitForRasterLine(200)
-	}
-
 
 	jsr SOUND.Update
 
@@ -196,9 +160,6 @@ TitleLoop: {
 }
 
 
-
-
-
 DeathUpdate:{
 
 		lda DeathTimer + 1
@@ -207,8 +168,6 @@ DeathUpdate:{
 
 		dec DeathTimer
 		beq NextLife
-
-		//jsr SOUND.SFX_EXPLODE
 
 		jmp Finish
 
@@ -348,8 +307,6 @@ SetupCharMemoryTitle: {
 
 MainIRQ: {
 
-	//inc $d020
-
 	lda #ONE
 	sta MAIN.PerformFrameCodeFlag
 
@@ -377,7 +334,6 @@ MainIRQ: {
 
 	NotYet:
 
-	//dec $d020
 
 	rts
 }
@@ -386,29 +342,16 @@ MainIRQ: {
 
 NewGame: {	
 
-	//jmp PetLoop
-
-	//ldx #4
-	//jsr CHAR_DRAWING.ColourObject
-
  	jsr CHAR_DRAWING.ClearAll
 
 
-
-
-
-
- 	//jmp PetLoop
-
 	lda #ONE
-	//sta LEVELDATA.Ones
 	sta GameIsActive
 
 	lda #ZERO
 	sta LEVELDATA.NextLevelID
 	sta LEVELDATA.Tens
 	sta GameOver
-//	sta GameIsActive
 	
 	jsr SCORE.Reset
 	jsr LEVELDATA.SetupNextLevel
@@ -455,14 +398,8 @@ NextLevel:{
 
 	jsr SCORE.LevelComplete
 
-
-	//ldy #0
-	//jsr SOUND.StartSong
-
 	lda LevelCompleteTimer + 1
 	sta LevelCompleteTimer
-
-
 
 	rts
 }
@@ -580,8 +517,6 @@ DrawBackground: {
 
 		WaitForRasterLine(138, 0)
 		SetBackgroundColour(7, 5)
-
-		//SetBackgroundColour(3,5)
 
 
 	}
@@ -703,3 +638,16 @@ GameTick: {
 
 
 }
+
+
+
+//exomizer sfx sys -t 64 -x "inc $d020" -o yakf.exo yakf.prg
+  // 20: Commodore Vic20, unexpanded memory.
+  //        23: Commodore Vic20, 3kB memory expansion.
+  //        52: Commodore Vic20, 32kB memory expansion.
+  //        55: Commodore Vic20  32+3kB memory expansion.
+  //        16: Commodore c16
+  //         4: Commodore plus4.
+  //        64: Commodore c64. (The default target)
+  //       128: Commodore c128.
+  // 	   4032 :PET
