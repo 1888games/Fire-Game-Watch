@@ -5,7 +5,7 @@ Written in 6502 assembler for the Commodore 64.
 
 Tools:
 
-KickAssembler
-SublimeText
-CharPad
-VICE
+- KickAssembler
+- SublimeText
+- CharPad
+- VICE
